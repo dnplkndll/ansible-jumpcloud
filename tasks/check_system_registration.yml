@@ -10,7 +10,7 @@
     follow_redirects: all
     return_content: yes
     status_code: 200
-  delegate_to: localhost
+  delegate_to: "{{inventory_hostname}}"
   register:  jc_system_attributes_json_response
   ignore_errors: yes
   when: jumpcloud_system_key is defined
@@ -19,7 +19,7 @@
   set_fact:
     jc_system_is_registered: "{{ not jc_system_attributes_json_response.failed }}"
   when: jc_system_attributes_json_response is defined
-  delegate_to: localhost
+  delegate_to: "{{inventory_hostname}}"
 
 - debug:
     msg: "Warning ==> the System is not registered in JumpCloud"
