@@ -15,6 +15,9 @@
     issue_backup_file: "{{ line_infile_result.backup }}"
   when:       ansible_distribution == "Ubuntu" and "12" in ansible_distribution_version and line_infile_result is defined and (not jumpcloud_is_installed or jumpcloud_force_install)
 
+- debug:
+    msg:      "{{ jumpcloud_x_connect_url }} {{jumpcloud_x_connect_key}} {{ jumpcloud_kickstart_script }}"
+
 - name:       Download JumpCloud Kickstart script
   get_url:
     url:      "{{ jumpcloud_x_connect_url }}"

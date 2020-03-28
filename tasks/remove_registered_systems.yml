@@ -16,7 +16,6 @@
     follow_redirects: all
     return_content: yes
     status_code: 200
-  delegate_to: "{{inventory_hostname}}"
   register: jc_registered_systems_json_response
   when: jumpcloud_displayName is defined
   ignore_errors: yes
@@ -37,7 +36,6 @@
     return_content: yes
     status_code: 200
   with_items: "{{ jc_registered_systems_json_response.json.results }}"
-  delegate_to: "{{inventory_hostname}}"
   register: jc_deleted_systems_json_response
   when: jc_count_of_inactive_registered_systems != "0"
   ignore_errors: yes

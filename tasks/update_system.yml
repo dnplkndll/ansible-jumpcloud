@@ -17,7 +17,6 @@
     follow_redirects: all
     return_content: yes
     status_code: 200
-  delegate_to: "{{inventory_hostname}}"
   register: http_outcome
   when: jumpcloud_system_key is defined
 ...
